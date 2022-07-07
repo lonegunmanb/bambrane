@@ -1,9 +1,9 @@
 ARG GOLANG_IMAGE_TAG=1.18
-ARG GHRUNNER_TAG=2.292.0-ubuntu-bionic
+ARG GHRUNNER_TAG=2.294.0-ubuntu-bionic
 FROM golang:${GOLANG_IMAGE_TAG} as build
 
 FROM myoung34/github-runner:${GHRUNNER_TAG} as runner
-ARG TERRAFORM_VERSION=1.1.9
+ARG TERRAFORM_VERSION=1.2.0
 ARG GO_VERSION=1.18
 ENV GOPATH=/go
 ENV PATH=$PATH:/usr/local/go/bin
@@ -24,4 +24,4 @@ RUN apt update && apt install -y curl zip coreutils jq && \
     rm -f /tmp/go.tar.gz && \
     mkdir /azlog
 
-ENTRYPOINT ["bash", "-c", "/runner.sh > output.log 2>&1 || tail -f /dev/null"]
+ENTRYPOINT ["bash", "-c", "/runner.sh"]

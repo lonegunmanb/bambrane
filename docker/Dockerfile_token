@@ -1,0 +1,6 @@
+FROM alpine:3.16.0
+COPY generate.sh /generate.sh
+
+RUN apk update && apk add curl jq
+
+ENTRYPOINT ["/generate.sh"]

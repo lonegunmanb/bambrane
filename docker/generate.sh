@@ -20,3 +20,8 @@ elif [ "$RUNNER_SCOPE" == "org" ]; then
     -X POST \
     https://api.github.com/orgs/${ORG}/actions/runners/registration-token | jq -r .token > /token/token
 fi
+
+until [[ ! -f /token/token ]]
+do
+     sleep 1
+done

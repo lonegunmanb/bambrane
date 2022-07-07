@@ -1,6 +1,0 @@
-FROM alpine:3.15.4
-COPY init.sh /init.sh
-
-RUN apk update && apk add curl jq
-
-ENTRYPOINT ["/init.sh"]

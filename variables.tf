@@ -59,6 +59,14 @@ variable "firewall_rules" {
     {
       name         = "azure_metadata"
       target_fqdns = ["169.254.169.254"]
+    },
+    {
+      name         = "ipify.org"
+      target_fqdns = ["api.ipify.org"]
+    },
+    {
+      name = "azure_keyvault"
+      target_fqdns = ["*.vault.azure.net"]
     }
   ]
   description = "Websites that the runners are allowed to access via 80 and 443."
@@ -100,16 +108,16 @@ variable "github_repos" {
   description = "The GitHub repos' https url that the runners belong to. Each repo will be assigned one runner."
 }
 
-variable "init_image" {
+variable "token_image" {
   type        = string
-  default     = "aztfmod.azurecr.io/testrunner/init"
-  description = "The container image used by aci's init container."
+  default     = "aztfmod.azurecr.io/testrunner/token"
+  description = "The container image used to generate github runner registry token."
 }
 
-variable "init_image_tag" {
+variable "token_image_tag" {
   type        = string
-  default     = "v0.0.1"
-  description = "The container image's tag used by aci's init container."
+  default     = "v0.0.2"
+  description = "The container image's tag used to generate github runner registry token."
 }
 
 variable "network_profile_tags" {
@@ -201,7 +209,7 @@ variable "runner_image" {
 
 variable "runner_image_tag" {
   type        = string
-  default     = "v0.0.2"
+  default     = "v0.0.7"
   description = "The container image's tag used by aci's container."
 }
 
