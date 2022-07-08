@@ -209,7 +209,7 @@ variable "runner_image" {
 
 variable "runner_image_tag" {
   type        = string
-  default     = "v0.0.7"
+  default     = "v0.0.8"
   description = "The container image's tag used by aci's container."
 }
 
