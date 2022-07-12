@@ -196,9 +196,14 @@ variable "route_table_tags" {
 
 variable "runner_address_prefix" {
   type        = string
-  default     = "10.0.0.0/24"
   description = "The runner's subnet's cidr."
   nullable    = false
+}
+
+variable "runner_container_commands" {
+  type        = list(string)
+  description = "Runner container's entrypoint commands. `null` will use image's entrypoint."
+  default     = null
 }
 
 variable "runner_image" {
@@ -250,7 +255,7 @@ variable "virtual_network" {
     name          = string
     address_space = list(string)
   })
-  description = "The virtual network we'd like to put our runners and other resources in."
+  description = "The virtual network we'd like to put our runners and other resources in. Must be an existing virtual network."
   nullable    = false
   validation {
     condition     = var.virtual_network.name != null && var.virtual_network != ""

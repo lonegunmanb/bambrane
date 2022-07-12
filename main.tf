@@ -59,8 +59,8 @@ resource "azurerm_container_group" "repo_runner" {
   restart_policy      = "Always"
 
   container {
-    name                  = "init"
-    image                 = "${var.token_image}:${var.token_image_tag}"
+    name   = "init"
+    image  = "${var.token_image}:${var.token_image_tag}"
     cpu    = 0.5
     memory = 0.5
 
@@ -84,7 +84,7 @@ resource "azurerm_container_group" "repo_runner" {
     image                 = "${var.runner_image}:${var.runner_image_tag}"
     cpu                   = "2"
     memory                = "2"
-#    commands              = ["bash", "-c", "/runner.sh"]
+    commands              = var.runner_container_commands
     environment_variables = {
       ARM_USE_MSI                  = "true",
       DISABLE_AUTO_UPDATE          = "true",
@@ -163,6 +163,7 @@ resource "azurerm_container_group" "org_runner" {
     image                 = "${var.runner_image}:${var.runner_image_tag}"
     cpu                   = "2"
     memory                = "2"
+    commands              = var.runner_container_commands
     environment_variables = {
       ARM_USE_MSI                  = "true",
       DISABLE_AUTO_UPDATE          = "true",

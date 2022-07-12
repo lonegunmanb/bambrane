@@ -31,6 +31,7 @@ module "runners" {
     address_space = azurerm_virtual_network.runner.address_space
   }
   firewall_subnet_address_prefixes   = ["10.0.1.0/24"]
+  runner_address_prefix              = "10.0.0.0/24"
   firewall_name                      = "bambrane-fw-${random_string.suffix.result}"
   firewall_public_ip_name            = "ghrunner-firewall-public-ip-${random_string.suffix.result}"
   repo_runner_name_prefix            = "ghrunner-repo-${random_string.suffix.result}"
