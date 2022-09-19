@@ -116,7 +116,7 @@ variable "token_image" {
 
 variable "token_image_tag" {
   type        = string
-  default     = "v0.0.2"
+  default     = "v0.0.3"
   description = "The container image's tag used to generate github runner registry token."
 }
 
